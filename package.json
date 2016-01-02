@@ -1,0 +1,26 @@
+{
+    "name": "spa-component",
+    "version": "1.3.0",
+    "description": "Base visual component implementation.",
+    "author": {
+        "name": "Stanislav Kalashnik",
+        "email": "darkpark.main@gmail.com"
+    },
+    "repository": "spasdk/component",
+    "scripts": {
+        "lint": "eslint *.js",
+        "jsdoc": "jsdoc --destination doc *.js readme.md"
+    },
+    "dependencies": {
+        "cjs-emitter": "1.*.*",
+        "spa-router": "spasdk/router"
+    },
+    "keywords": [
+        "spa",
+        "spasdk",
+        "framework",
+        "visual",
+        "component"
+    ],
+    "license": "GPL-3.0"
+}
