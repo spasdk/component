@@ -17,3 +17,27 @@
 		box-sizing: border-box;
 	}
 }
+
+
+@if $DEVELOP {
+    body.develop {
+        .component {
+            outline: 1px dashed #005000;
+            outline-offset: -1px;
+
+            &.focus {
+                outline: 1px dashed red;
+            }
+
+            // to show inner structure
+            //&.wired {
+            //    outline-width: 3px;
+            //    outline-style: dotted;
+            //    div, td {
+            //        outline: 1px dashed grey;
+            //        outline-offset: -1px;
+            //    }
+            //}
+        }
+    }
+}
