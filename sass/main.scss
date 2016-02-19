@@ -1,7 +1,7 @@
 // @author Stanislav Kalashnik <darkpark.main@gmail.com>
 // @license GNU GENERAL PUBLIC LICENSE Version 3
 
-/* spa-component */
+/* spa-component: production */
 
 .component {
 	// component's outer dom element
@@ -18,6 +18,8 @@
 	}
 }
 
+
+/* spa-component: development */
 
 @if $DEVELOP {
     body.develop {
