@@ -253,11 +253,11 @@ Component.prototype.defaultEvents = null;
  * );
  */
 Component.prototype.add = function ( child ) {
-    var i;
+    var index;
 
     // walk through all the given elements
-    for ( i = 0; i < arguments.length; i++ ) {
-        child = arguments[i];
+    for ( index = 0; index < arguments.length; index++ ) {
+        child = arguments[index];
 
         if ( DEBUG ) {
             if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
