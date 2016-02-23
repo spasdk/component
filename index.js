@@ -352,7 +352,9 @@ Component.prototype.remove = function () {
         child.remove();
     });
 
-    this.removeAllListeners();
+    // remove all listeners
+    this.events = {};
+
     this.$node.parentNode.removeChild(this.$node);
 
     // there are some listeners
