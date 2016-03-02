@@ -8,6 +8,7 @@
     },
     "repository": "spasdk/component",
     "scripts": {
+        "sass": "node-sass --indent-width 4 sass/develop.scss css/develop.css && node-sass --indent-width 4 sass/release.scss css/release.css",
         "lint": "eslint *.js",
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
