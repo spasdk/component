@@ -1,0 +1,14 @@
+/* spa-component: variables */
+/* spa-component: release */
+.component.hidden {
+    display: none !important; }
+
+.component div {
+    box-sizing: border-box; }
+
+/* spa-component: develop */
+body.develop .component {
+    outline: 1px dashed #005000;
+    outline-offset: -1px; }
+    body.develop .component.focus {
+        outline: 1px dashed red; }
