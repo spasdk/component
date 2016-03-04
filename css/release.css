@@ -1,9 +1,6 @@
-/* spa-component: variables */
 /* spa-component: release */
 .component.hidden {
     display: none !important; }
 
 .component div {
     box-sizing: border-box; }
-
-/* spa-component: develop */
