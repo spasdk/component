@@ -2,7 +2,6 @@
 // @license GNU GENERAL PUBLIC LICENSE Version 3
 
 /* spa-component: release */
-
 .component {
 	// component's outer dom element
 	&.hidden {
@@ -19,9 +18,9 @@
 }
 
 
-/* spa-component: develop */
 
 @if $DEVELOP {
+    /* spa-component: develop */
     body.develop {
         .component {
             outline: 1px dashed #005000;
