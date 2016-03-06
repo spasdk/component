@@ -1,6 +1,5 @@
 /* spa-component: release */
-.component.hidden {
-    display: none !important; }
-
-.component div {
+.component {
     box-sizing: border-box; }
+    .component.hidden {
+        display: none !important; }
