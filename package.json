@@ -16,6 +16,9 @@
         "cjs-emitter": "cjssdk/emitter",
         "spa-router": "spasdk/router"
     },
+    "devDependencies": {
+        "spa-eslint-config": "spasdk/eslint-config"
+    },
     "keywords": [
         "spa",
         "spasdk",
