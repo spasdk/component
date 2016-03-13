@@ -168,10 +168,11 @@ function Component ( config ) {
         }
     }
 
-    // apply given events
     if ( config.events ) {
-        // apply
-        this.addListeners(config.events);
+        // apply all given events
+        Object.keys(config.events).forEach(function ( name ) {
+            self.addListener(name, config.events[name]);
+        });
     }
 
     // apply the given children components
