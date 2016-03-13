@@ -7,8 +7,8 @@
 
 'use strict';
 
-var Emitter = require('cjs-emitter'),
-    router  = require('spa-router'),
+var app     = require('spa-app'),
+    Emitter = require('cjs-emitter'),
     counter = 0;
 
 
@@ -336,7 +336,7 @@ Component.prototype.remove = function () {
         }
 
         // active at the moment
-        if ( router.current.activeComponent === this ) {
+        if ( app.activePage.activeComponent === this ) {
             this.blur();
             this.parent.focus();
         }
@@ -382,7 +382,7 @@ Component.prototype.remove = function () {
  * @fires module:stb/component~Component#focus
  */
 Component.prototype.focus = function ( data ) {
-    var activePage = router.current,
+    var activePage = app.activePage,
         activeItem = activePage.activeComponent;
 
     // this is a visual component on a page
@@ -426,7 +426,7 @@ Component.prototype.focus = function ( data ) {
  * @fires module:stb/component~Component#blur
  */
 Component.prototype.blur = function () {
-    var activePage = router.current,
+    var activePage = app.activePage,
         activeItem = activePage.activeComponent;
 
     // apply visuals anyway

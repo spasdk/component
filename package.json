@@ -13,8 +13,7 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "cjs-emitter": "cjssdk/emitter",
-        "spa-router": "spasdk/router"
+        "cjs-emitter": "cjssdk/emitter"
     },
     "devDependencies": {
         "spa-eslint-config": "spasdk/eslint-config"
