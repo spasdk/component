@@ -56,7 +56,7 @@ function Component ( config ) {
     // sanitize
     config = config || {};
 
-    if ( DEBUG ) {
+    if ( DEVELOP ) {
         if ( typeof config !== 'object' ) { throw new Error(__filename + ': wrong config type'); }
         // init parameters checks
         if ( config.id        && typeof config.id !== 'string'         ) { throw new Error(__filename + ': wrong or empty config.id'); }
@@ -157,7 +157,7 @@ function Component ( config ) {
         // sanitize
         config.events = config.events || {};
 
-        if ( DEBUG ) {
+        if ( DEVELOP ) {
             if ( typeof config.events !== 'object' ) { throw new Error(__filename + ': wrong config.events type'); }
             if ( typeof this.defaultEvents !== 'object' ) { throw new Error(__filename + ': wrong this.defaultEvents type'); }
         }
@@ -202,7 +202,7 @@ function Component ( config ) {
             }
         }
 
-        if ( DEBUG ) {
+        if ( DEVELOP ) {
             // middle mouse button
             if ( event.button === 1 ) {
                 debug.inspect(self, 0);
@@ -215,7 +215,7 @@ function Component ( config ) {
         event.stopPropagation();
     });
 
-    if ( DEBUG ) {
+    if ( DEVELOP ) {
         // expose inner ID to global scope
         window[self.id] = self.$node;
 
@@ -260,7 +260,7 @@ Component.prototype.add = function ( child ) {
     for ( index = 0; index < arguments.length; index++ ) {
         child = arguments[index];
 
-        if ( DEBUG ) {
+        if ( DEVELOP ) {
             if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
         }
 
@@ -301,7 +301,7 @@ Component.prototype.add = function ( child ) {
 //Component.prototype.insert = function ( child, index ) {
 //    var prevIndex = this.children.indexOf(child);
 //
-//    if ( DEBUG ) {
+//    if ( DEVELOP ) {
 //        if ( arguments.length !== 2 ) { throw new Error(__filename + ': wrong arguments number'); }
 //        if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
 //    }
@@ -332,7 +332,7 @@ Component.prototype.add = function ( child ) {
 Component.prototype.remove = function () {
     // really inserted somewhere
     if ( this.parent ) {
-        if ( DEBUG ) {
+        if ( DEVELOP ) {
             if ( !(this.parent instanceof Component) ) { throw new Error(__filename + ': wrong this.parent type'); }
         }
 
@@ -346,7 +346,7 @@ Component.prototype.remove = function () {
 
     // remove all children
     this.children.forEach(function ( child ) {
-        if ( DEBUG ) {
+        if ( DEVELOP ) {
             if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
         }
 
