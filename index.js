@@ -57,7 +57,7 @@ function Component ( config ) {
     config = config || {};
 
     console.assert(typeof this === 'object', 'must be constructed via new');
-    
+
     if ( DEVELOP ) {
         if ( typeof config !== 'object' ) { throw new Error(__filename + ': wrong config type'); }
         // init parameters checks
@@ -226,6 +226,10 @@ function Component ( config ) {
         this.$node.title = 'component ' + this.constructor.name + '.' + this.id + ' (outer)';
         this.$body.title = 'component ' + this.constructor.name + '.' + this.id + ' (inner)';
     }
+
+    debug.info('create component ' + this.constructor.name + '#' + this.id, null, {
+        tags: ['create', 'component', this.constructor.name, this.id]
+    });
 }
 
 
@@ -275,6 +279,10 @@ Component.prototype.add = function ( child ) {
             this.$body.appendChild(child.$node);
         }
 
+        debug.info('add component ' + child.constructor.name + '#' + child.id + ' to ' + this.constructor.name + '#' + this.id, null, {
+            tags: ['add', 'component', this.constructor.name, this.id, child.constructor.name, child.id]
+        });
+
         // there are some listeners
         if ( this.events['add'] ) {
             /**
@@ -288,7 +296,7 @@ Component.prototype.add = function ( child ) {
             this.emit('add', {item: child});
         }
 
-        debug.log('component ' + this.constructor.name + '.' + this.id + ' new child: ' + child.constructor.name + '.' + child.id);
+        //debug.log('component ' + this.constructor.name + '.' + this.id + ' new child: ' + child.constructor.name + '.' + child.id);
     }
 };
 
@@ -370,7 +378,10 @@ Component.prototype.remove = function () {
         this.emit('remove');
     }
 
-    debug.log('component ' + this.constructor.name + '.' + this.id + ' remove', 'red');
+    //debug.log('component ' + this.constructor.name + '.' + this.id + ' remove', 'red');
+    debug.info('remove component ' + this.constructor.name + '#' + this.id, null, {
+        tags: ['remove', 'component', this.constructor.name, this.id]
+    });
 };
 
 
@@ -400,6 +411,11 @@ Component.prototype.focus = function ( data ) {
         activePage.activeComponent = activeItem = this;
         activeItem.$node.classList.add('focus');
 
+        //debug.log('component ' + this.constructor.name + '.' + this.id + ' focus');
+        debug.info('focus component ' + this.constructor.name + '#' + this.id, null, {
+            tags: ['focus', 'component', this.constructor.name, this.id]
+        });
+
         // there are some listeners
         if ( activeItem.events['focus'] ) {
             /**
@@ -409,8 +425,6 @@ Component.prototype.focus = function ( data ) {
              */
             activeItem.emit('focus', data);
         }
-
-        debug.log('component ' + this.constructor.name + '.' + this.id + ' focus');
 
         return true;
     }
@@ -439,6 +453,11 @@ Component.prototype.blur = function () {
     if ( this === activeItem ) {
         activePage.activeComponent = null;
 
+        //debug.log('component ' + this.constructor.name + '.' + this.id + ' blur', 'grey');
+        debug.info('blur component ' + this.constructor.name + '#' + this.id, null, {
+            tags: ['blur', 'component', this.constructor.name, this.id]
+        });
+
         // there are some listeners
         if ( this.events['blur'] ) {
             /**
@@ -448,8 +467,6 @@ Component.prototype.blur = function () {
              */
             this.emit('blur');
         }
-
-        debug.log('component ' + this.constructor.name + '.' + this.id + ' blur', 'grey');
 
         return true;
     }
@@ -477,6 +494,10 @@ Component.prototype.show = function ( data ) {
         this.$node.classList.remove('hidden');
         // flag
         this.visible = true;
+
+        debug.info('show component ' + this.constructor.name + '#' + this.id, null, {
+            tags: ['show', 'component', this.constructor.name, this.id]
+        });
 
         // there are some listeners
         if ( this.events['show'] ) {
@@ -510,6 +531,10 @@ Component.prototype.hide = function () {
         this.$node.classList.add('hidden');
         // flag
         this.visible = false;
+
+        debug.info('hide component ' + this.constructor.name + '#' + this.id, null, {
+            tags: ['hide', 'component', this.constructor.name, this.id]
+        });
 
         // there are some listeners
         if ( this.events['hide'] ) {
