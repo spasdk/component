@@ -207,7 +207,7 @@ function Component ( config ) {
         if ( DEVELOP ) {
             // middle mouse button
             if ( event.button === 1 ) {
-                debug.inspect(self, 0);
+                //debug.inspect(self, 0);
                 debug.info('"window.link" or "' + self.id + '.component"', 'this component is now available in global scope');
                 window.link = self;
                 self.$node.classList.toggle('wired');
@@ -223,8 +223,8 @@ function Component ( config ) {
 
         // expose a link
         this.$node.component = this.$body.component = this;
-        this.$node.title = 'component ' + this.constructor.name + '.' + this.id + ' (outer)';
-        this.$body.title = 'component ' + this.constructor.name + '.' + this.id + ' (inner)';
+        this.$node.title = 'component ' + this.constructor.name + '#' + this.id + ' (outer)';
+        this.$body.title = 'component ' + this.constructor.name + '#' + this.id + ' (inner)';
     }
 
     debug.info('create component ' + this.constructor.name + '#' + this.id, null, {
@@ -296,7 +296,7 @@ Component.prototype.add = function ( child ) {
             this.emit('add', {item: child});
         }
 
-        //debug.log('component ' + this.constructor.name + '.' + this.id + ' new child: ' + child.constructor.name + '.' + child.id);
+        //debug.log('component ' + this.constructor.name + '#' + this.id + ' new child: ' + child.constructor.name + '#' + child.id);
     }
 };
 
@@ -378,7 +378,7 @@ Component.prototype.remove = function () {
         this.emit('remove');
     }
 
-    //debug.log('component ' + this.constructor.name + '.' + this.id + ' remove', 'red');
+    //debug.log('component ' + this.constructor.name + '#' + this.id + ' remove', 'red');
     debug.info('remove component ' + this.constructor.name + '#' + this.id, null, {
         tags: ['remove', 'component', this.constructor.name, this.id]
     });
@@ -411,7 +411,7 @@ Component.prototype.focus = function ( data ) {
         activePage.activeComponent = activeItem = this;
         activeItem.$node.classList.add('focus');
 
-        //debug.log('component ' + this.constructor.name + '.' + this.id + ' focus');
+        //debug.log('component ' + this.constructor.name + '#' + this.id + ' focus');
         debug.info('focus component ' + this.constructor.name + '#' + this.id, null, {
             tags: ['focus', 'component', this.constructor.name, this.id]
         });
@@ -453,7 +453,7 @@ Component.prototype.blur = function () {
     if ( this === activeItem ) {
         activePage.activeComponent = null;
 
-        //debug.log('component ' + this.constructor.name + '.' + this.id + ' blur', 'grey');
+        //debug.log('component ' + this.constructor.name + '#' + this.id + ' blur', 'grey');
         debug.info('blur component ' + this.constructor.name + '#' + this.id, null, {
             tags: ['blur', 'component', this.constructor.name, this.id]
         });
@@ -471,7 +471,9 @@ Component.prototype.blur = function () {
         return true;
     }
 
-    debug.log('component ' + this.constructor.name + '.' + this.id + ' attempt to blur without link to a page', 'red');
+    debug.warn('component ' + this.constructor.name + '#' + this.id + ' attempt to blur without link to a page', null, {
+        tags: ['blur', 'component', this.constructor.name, this.id]
+    });
 
     // nothing was done
     return false;
