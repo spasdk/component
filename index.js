@@ -200,7 +200,7 @@ function Component ( config ) {
                  * @type {Object}
                  * @property {Event} event click event data
                  */
-                self.emit('click', {event: event});
+                self.emit('click', event);
             }
         }
 
