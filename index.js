@@ -186,23 +186,23 @@ function Component ( config ) {
     // component activation by mouse
     this.$node.addEventListener('click', function ( event ) {
         // left mouse button
-        if ( event.button === 0 ) {
-            // activate if possible
-            self.focus();
+        //if ( event.button === 0 ) {
+        // activate if possible
+        self.focus();
 
-            // there are some listeners
-            if ( self.events['click'] ) {
-                /**
-                 * Mouse click event.
-                 *
-                 * @event module:stb/component~Component#click
-                 *
-                 * @type {Object}
-                 * @property {Event} event click event data
-                 */
-                self.emit('click', event);
-            }
+        // there are some listeners
+        if ( self.events['click'] ) {
+            /**
+             * Mouse click event.
+             *
+             * @event module:stb/component~Component#click
+             *
+             * @type {Object}
+             * @property {Event} event click event data
+             */
+            self.emit('click', event);
         }
+        //}
 
         if ( DEVELOP ) {
             // middle mouse button
