@@ -7,7 +7,7 @@
 
 'use strict';
 
-var app     = require('spa-app'),
+var app     = require('spa-app/lib/core'),
     Emitter = require('cjs-emitter'),
     counter = 0;
 
