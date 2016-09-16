@@ -131,7 +131,8 @@ function Component ( config ) {
     this.$body = config.$body || this.$node;
 
     // set CSS class names
-    this.$node.className += ' component ' + (config.className || '');
+    //this.$node.className += ' component ' + (config.className || '');
+    this.$node.className = this.name + ' ' + (config.className || '');
 
     // apply component id if given, generate otherwise
     this.id = config.id || this.$node.id || 'cid' + counter++;
