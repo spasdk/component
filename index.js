@@ -224,12 +224,12 @@ function Component ( config ) {
 
         // expose a link
         this.$node.component = this.$body.component = this;
-        this.$node.title = 'component ' + this.constructor.name + '#' + this.id + ' (outer)';
-        this.$body.title = 'component ' + this.constructor.name + '#' + this.id + ' (inner)';
+        this.$node.title = this.name + '#' + this.id + ' (outer)';
+        this.$body.title = this.name + '#' + this.id + ' (inner)';
     }
 
-    debug.info('create component ' + this.constructor.name + '#' + this.id, null, {
-        tags: ['create', 'component', this.constructor.name, this.id]
+    debug.info('create component ' + this.name + '#' + this.id, null, {
+        tags: ['create', 'component', this.name, this.id]
     });
 }
 
@@ -280,8 +280,8 @@ Component.prototype.add = function ( child ) {
             this.$body.appendChild(child.$node);
         }
 
-        debug.info('add component ' + child.constructor.name + '#' + child.id + ' to ' + this.constructor.name + '#' + this.id, null, {
-            tags: ['add', 'component', this.constructor.name, this.id, child.constructor.name, child.id]
+        debug.info('add component ' + child.name + '#' + child.id + ' to ' + this.name + '#' + this.id, null, {
+            tags: ['add', 'component', this.name, this.id, child.name, child.id]
         });
 
         // there are some listeners
@@ -297,7 +297,7 @@ Component.prototype.add = function ( child ) {
             this.emit('add', {item: child});
         }
 
-        //debug.log('component ' + this.constructor.name + '#' + this.id + ' new child: ' + child.constructor.name + '#' + child.id);
+        //debug.log('component ' + this.name + '#' + this.id + ' new child: ' + child.name + '#' + child.id);
     }
 };
 
@@ -379,9 +379,9 @@ Component.prototype.remove = function () {
         this.emit('remove');
     }
 
-    //debug.log('component ' + this.constructor.name + '#' + this.id + ' remove', 'red');
-    debug.info('remove component ' + this.constructor.name + '#' + this.id, null, {
-        tags: ['remove', 'component', this.constructor.name, this.id]
+    //debug.log('component ' + this.name + '#' + this.id + ' remove', 'red');
+    debug.info('remove component ' + this.name + '#' + this.id, null, {
+        tags: ['remove', 'component', this.name, this.id]
     });
 };
 
@@ -412,9 +412,9 @@ Component.prototype.focus = function ( data ) {
         activePage.activeComponent = activeItem = this;
         activeItem.$node.classList.add('focus');
 
-        //debug.log('component ' + this.constructor.name + '#' + this.id + ' focus');
-        debug.info('focus component ' + this.constructor.name + '#' + this.id, null, {
-            tags: ['focus', 'component', this.constructor.name, this.id]
+        //debug.log('component ' + this.name + '#' + this.id + ' focus');
+        debug.info('focus component ' + this.name + '#' + this.id, null, {
+            tags: ['focus', 'component', this.name, this.id]
         });
 
         // there are some listeners
@@ -454,9 +454,9 @@ Component.prototype.blur = function () {
     if ( this === activeItem ) {
         activePage.activeComponent = null;
 
-        //debug.log('component ' + this.constructor.name + '#' + this.id + ' blur', 'grey');
-        debug.info('blur component ' + this.constructor.name + '#' + this.id, null, {
-            tags: ['blur', 'component', this.constructor.name, this.id]
+        //debug.log('component ' + this.name + '#' + this.id + ' blur', 'grey');
+        debug.info('blur component ' + this.name + '#' + this.id, null, {
+            tags: ['blur', 'component', this.name, this.id]
         });
 
         // there are some listeners
@@ -472,8 +472,8 @@ Component.prototype.blur = function () {
         return true;
     }
 
-    debug.warn('component ' + this.constructor.name + '#' + this.id + ' attempt to blur without link to a page', null, {
-        tags: ['blur', 'component', this.constructor.name, this.id]
+    debug.warn('component ' + this.name + '#' + this.id + ' attempt to blur without link to a page', null, {
+        tags: ['blur', 'component', this.name, this.id]
     });
 
     // nothing was done
@@ -498,8 +498,8 @@ Component.prototype.show = function ( data ) {
         // flag
         this.visible = true;
 
-        debug.info('show component ' + this.constructor.name + '#' + this.id, null, {
-            tags: ['show', 'component', this.constructor.name, this.id]
+        debug.info('show component ' + this.name + '#' + this.id, null, {
+            tags: ['show', 'component', this.name, this.id]
         });
 
         // there are some listeners
@@ -535,8 +535,8 @@ Component.prototype.hide = function () {
         // flag
         this.visible = false;
 
-        debug.info('hide component ' + this.constructor.name + '#' + this.id, null, {
-            tags: ['hide', 'component', this.constructor.name, this.id]
+        debug.info('hide component ' + this.name + '#' + this.id, null, {
+            tags: ['hide', 'component', this.name, this.id]
         });
 
         // there are some listeners
