@@ -122,7 +122,7 @@ function Component ( config ) {
     this.propagate = !!config.propagate;
 
     // parent constructor call
-    Emitter.call(this, config.data);
+    Emitter.call(this);
 
     // outer handle - empty div in case nothing is given
     this.$node = config.$node || document.createElement('div');
