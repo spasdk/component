@@ -59,14 +59,28 @@ function Component ( config ) {
     console.assert(typeof this === 'object', 'must be constructed via new');
 
     if ( DEVELOP ) {
-        if ( typeof config !== 'object' ) { throw new Error(__filename + ': wrong config type'); }
+        if ( typeof config !== 'object' ) {
+            throw new Error(__filename + ': wrong config type');
+        }
         // init parameters checks
-        if ( config.id        && typeof config.id !== 'string'         ) { throw new Error(__filename + ': wrong or empty config.id'); }
-        if ( config.className && typeof config.className !== 'string'  ) { throw new Error(__filename + ': wrong or empty config.className'); }
-        if ( config.$node     && !(config.$node instanceof Element)    ) { throw new Error(__filename + ': wrong config.$node type'); }
-        if ( config.$body     && !(config.$body instanceof Element)    ) { throw new Error(__filename + ': wrong config.$body type'); }
-        if ( config.parent    && !(config.parent instanceof Component) ) { throw new Error(__filename + ': wrong config.parent type'); }
-        if ( config.children  && !Array.isArray(config.children)       ) { throw new Error(__filename + ': wrong config.children type'); }
+        if ( config.id && typeof config.id !== 'string' ) {
+            throw new Error(__filename + ': wrong or empty config.id');
+        }
+        if ( 'className' in config && (!config.className || typeof config.className !== 'string') ) {
+            throw new Error(__filename + ': wrong or empty config.className');
+        }
+        if ( config.$node && !(config.$node instanceof Element) ) {
+            throw new Error(__filename + ': wrong config.$node type');
+        }
+        if ( config.$body && !(config.$body instanceof Element) ) {
+            throw new Error(__filename + ': wrong config.$body type');
+        }
+        if ( config.parent && !(config.parent instanceof Component) ) {
+            throw new Error(__filename + ': wrong config.parent type');
+        }
+        if ( config.children && !Array.isArray(config.children) ) {
+            throw new Error(__filename + ': wrong config.children type');
+        }
     }
 
     /**
@@ -161,8 +175,12 @@ function Component ( config ) {
         config.events = config.events || {};
 
         if ( DEVELOP ) {
-            if ( typeof config.events !== 'object' ) { throw new Error(__filename + ': wrong config.events type'); }
-            if ( typeof this.defaultEvents !== 'object' ) { throw new Error(__filename + ': wrong this.defaultEvents type'); }
+            if ( typeof config.events !== 'object' ) {
+                throw new Error(__filename + ': wrong config.events type');
+            }
+            if ( typeof this.defaultEvents !== 'object' ) {
+                throw new Error(__filename + ': wrong this.defaultEvents type');
+            }
         }
 
         for ( name in this.defaultEvents ) {
@@ -268,7 +286,9 @@ Component.prototype.add = function ( child ) {
         child = arguments[index];
 
         if ( DEVELOP ) {
-            if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
+            if ( !(child instanceof Component) ) {
+                throw new Error(__filename + ': wrong child type');
+            }
         }
 
         // apply
@@ -344,7 +364,9 @@ Component.prototype.remove = function () {
     // really inserted somewhere
     if ( this.parent ) {
         if ( DEVELOP ) {
-            if ( !(this.parent instanceof Component) ) { throw new Error(__filename + ': wrong this.parent type'); }
+            if ( !(this.parent instanceof Component) ) {
+                throw new Error(__filename + ': wrong this.parent type');
+            }
         }
 
         // active at the moment
@@ -358,7 +380,9 @@ Component.prototype.remove = function () {
     // remove all children
     this.children.forEach(function ( child ) {
         if ( DEVELOP ) {
-            if ( !(child instanceof Component) ) { throw new Error(__filename + ': wrong child type'); }
+            if ( !(child instanceof Component) ) {
+                throw new Error(__filename + ': wrong child type');
+            }
         }
 
         child.remove();
