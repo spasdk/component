@@ -146,6 +146,7 @@ function Component ( config ) {
 
     // set CSS class names
     //this.$node.className += ' component ' + (config.className || '');
+    // previous approach is not good as it mess with components hierarchy
     this.$node.className = this.name + ' ' + (config.className || '');
 
     // apply component id if given, generate otherwise
