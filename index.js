@@ -541,7 +541,7 @@ Component.prototype.show = function ( data ) {
     }
 
     // nothing was done
-    return true;
+    return false;
 };
 
 
@@ -578,7 +578,7 @@ Component.prototype.hide = function () {
     }
 
     // nothing was done
-    return true;
+    return false;
 };
 
 
