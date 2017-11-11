@@ -389,9 +389,6 @@ Component.prototype.remove = function () {
         child.remove();
     });
 
-    // remove all listeners
-    this.events = {};
-
     this.$node.parentNode.removeChild(this.$node);
 
     // there are some listeners
@@ -403,6 +400,9 @@ Component.prototype.remove = function () {
          */
         this.emit('remove');
     }
+
+    // remove all listeners
+    this.events = {};
 
     //debug.log('component ' + this.name + '#' + this.id + ' remove', 'red');
     debug.info('remove component ' + this.name + '#' + this.id, null, {
