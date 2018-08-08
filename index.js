@@ -192,8 +192,8 @@ function Component ( config ) {
 
     if ( config.events ) {
         // apply all given events
-        Object.keys(config.events).forEach(function ( name ) {
-            self.addListener(name, config.events[name]);
+        Object.keys(config.events).forEach(function ( eventName ) {
+            self.addListener(eventName, config.events[eventName]);
         });
     }
 
