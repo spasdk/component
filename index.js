@@ -506,18 +506,53 @@ Component.prototype.blur = function () {
 };
 
 
+/*function show ( self, data ) {
+    // correct style
+    self.$node.classList.remove('hidden');
+    // flag
+    self.visible = true;
+
+    debug.info('show component ' + self.name + '#' + self.id, null, {
+        tags: ['show', 'component', self.name, self.id]
+    });
+
+    // there are some listeners
+    if ( self.events['show'] ) {
+        /!**
+         * Make the component visible.
+         *
+         * @event module:stb/component~Component#show
+         *!/
+        self.emit('show', data);
+    }
+}*/
+
 /**
  * Make the component visible and notify subscribers.
  *
  * @param {Object} [data] custom data which passed into handlers
+ * @param {function} [callback] user callback
  *
  * @return {boolean} operation status
  *
  * @fires module:stb/component~Component#show
  */
-Component.prototype.show = function ( data ) {
+Component.prototype.show = function ( data, callback ) {
+    //var self = this;
+
     // is it hidden
     if ( !this.visible ) {
+        /*if ( typeof callback === 'function' ) {
+            // async call
+            setTimeout(function () {
+                show(self, data);
+                callback();
+            });
+        } else {
+            // sync call
+            show(this, data);
+        }*/
+
         // correct style
         this.$node.classList.remove('hidden');
         // flag
@@ -537,6 +572,12 @@ Component.prototype.show = function ( data ) {
             this.emit('show', data);
         }
 
+        // async call
+        if ( typeof callback === 'function' ) {
+            // async call
+            setTimeout(callback);
+        }
+
         return true;
     }
 
@@ -548,11 +589,13 @@ Component.prototype.show = function ( data ) {
 /**
  * Make the component hidden and notify subscribers.
  *
+ * @param {function} [callback] user callback
+ *
  * @return {boolean} operation status
  *
  * @fires module:stb/component~Component#hide
  */
-Component.prototype.hide = function () {
+Component.prototype.hide = function ( callback ) {
     // is it visible
     if ( this.visible ) {
         // correct style
@@ -572,6 +615,12 @@ Component.prototype.hide = function () {
              * @event module:stb/component~Component#hide
              */
             this.emit('hide');
+        }
+
+        // async call
+        if ( typeof callback === 'function' ) {
+            // async call
+            setTimeout(callback);
         }
 
         return true;

@@ -26,6 +26,18 @@ Add the singleton to the scope:
 var component = require('spa-component');
 ```
 
+Show the component (hiding is identical):
+
+```js
+// sync
+component.show(someData);
+
+// async
+component.show(someData, function () {
+    // ready
+});
+```
+
 
 ## Development mode ##
 
