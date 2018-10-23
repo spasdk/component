@@ -48,6 +48,7 @@ var app     = require('spa-app/lib/core'),
  * component.add( ... );
  * component.focus();
  */
+// eslint-disable-next-line complexity
 function Component ( config ) {
     // current execution context
     var self = this,
