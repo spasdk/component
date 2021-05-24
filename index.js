@@ -651,7 +651,7 @@ Component.prototype.hide = function ( callback ) {
 /**
  * Make the component focused.
  *
- @param {Event} event mouseover event data
+ * @param {Event} event mouseover event data
  */
 Component.prototype.onHover = function ( event ) {
     if ( this.focusable && this !== app.activePage.activeComponent ) {
