@@ -1,6 +1,6 @@
 {
     "name": "spa-component",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "description": "Base visual component implementation.",
     "author": {
         "name": "Stanislav Kalashnik",
