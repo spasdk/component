@@ -34,6 +34,7 @@ var app     = require('spa-app/lib/core'),
  * @param {boolean} [config.visible=true] component initial visibility state flag
  * @param {boolean} [config.focusable=true] component can accept focus or not
  * @param {boolean} [config.propagate=false] allow to emit events to the parent component
+ * @param {boolean} [config.hoverable=false] focus component on mouse hover
  *
  * @fires module:stb/component~Component#click
  *
@@ -98,6 +99,13 @@ function Component ( config ) {
      * @type {boolean}
      */
     this.focusable = true;
+
+    /**
+     * Component become focused on mouse hover.
+     *
+     * @type {boolean}
+     */
+    this.hoverable = false;
 
     /**
      * DOM outer handle.
@@ -202,6 +210,14 @@ function Component ( config ) {
     if ( config.children ) {
         // apply
         this.add.apply(this, config.children);
+    }
+
+    if ( config.hoverable === true ) {
+        this.hoverable = true;
+
+        this.$node.addEventListener('mouseover', function ( event ) {
+            self.onHover && self.onHover(event);
+        });
     }
 
     // component activation by mouse
@@ -629,6 +645,19 @@ Component.prototype.hide = function ( callback ) {
 
     // nothing was done
     return false;
+};
+
+
+/**
+ * Make the component focused.
+ *
+ * @param {Event} event mouseover event data
+ */
+Component.prototype.onHover = function ( event ) {
+    if ( this.focusable && this !== app.activePage.activeComponent ) {
+        this.focus();
+        event.stopPropagation();
+    }
 };
 
 
